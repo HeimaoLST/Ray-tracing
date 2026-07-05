@@ -1,22 +1,21 @@
+#include "color.h"
 #include <iostream>
-
+#include <ostream>
 int main() {
-    int weight = 256;
-    int height = 256;
-    std::cout<<"P3\n"<<weight<<' '<<height<<"\n255\n";
-    for (int i = 0; i < weight; i++) {
-        std::clog<<"Row Remaining: "<<weight - i<<'\n';
-        for (int j = 0; j < height;j++) {
+  int weight = 256;
+  int height = 256;
+  std::cout << "P3\n" << weight << ' ' << height << "\n255\n";
+  for (int i = 0; i < height; i++) {
+    std::clog << "\rRow Remaining: " << height - i << ' ' << std::flush;
+    for (int j = 0; j < weight; j++) {
 
-            auto rr = double(i) / (weight - 1);
-            auto rg = double(j) / (height - 1);
-            auto rb = 0;
-            int r = rr * 255.99;
-            int g = rg * 255.99;
-            int b = rb * 255.99;
+      auto rr = double(j) / (weight - 1);
+      auto rg = double(i) / (height - 1);
+      auto rb = 0;
 
-            std::cout<<r<<' '<<g<<' '<<b<<'\n';
-        }
+      color pixel = color(rr, rg, rb);
+      write_pixels(std::cout, pixel);
     }
-    std::clog<<"Done!\n";
+  }
+  std::clog << "Done!\n";
 }
