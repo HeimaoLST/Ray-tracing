@@ -53,5 +53,5 @@ inline vec3 operator/(const vec3& u, double v){
 }
 inline vec3 unit_vector(const vec3& u) {
     double num = sqrt(u.x()*u.x() + u.y() * u.y() + u.z() * u.z());
-    return vec3(std::sqrt(u.x() * u.x())/ num,std::sqrt(u.y() * u.y())/ num,std::sqrt(u.z() * u.z())/ num );
+    return vec3(u.x() / num, u.y() / num, u.z() / num);
 }
