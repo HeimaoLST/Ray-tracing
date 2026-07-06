@@ -1,3 +1,5 @@
 build/
-,cache/
+.cache/
 *.ppm
+*.txt
+!CMakeLists.txt

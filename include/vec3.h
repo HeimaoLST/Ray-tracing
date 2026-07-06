@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <cmath>
 class vec3 {
 public:
   double e[3];
@@ -35,5 +36,22 @@ public:
   vec3 operator+(const vec3 &u) {
     return vec3(e[0] + u.e[0], e[1] + u.e[1], e[2] + u.e[2]);
   }
-};
+  };
 using point3 = vec3;
+
+inline vec3 operator+(const vec3 &u, const vec3 &v) {
+    return vec3(u.x() + v.x(), u.y() + v.y(), u.z() + v.z());
+}
+inline vec3 operator-(const vec3 &u, const vec3 &v) {
+    return u+(-v);
+}
+inline vec3 operator*(double u, const vec3 &v) {
+    return vec3(u * v.x(), u * v.y(), u *v.z());
+}
+inline vec3 operator/(const vec3& u, double v){
+    return (1/v) * u;
+}
+inline vec3 unit_vector(const vec3& u) {
+    double num = sqrt(u.x()*u.x() + u.y() * u.y() + u.z() * u.z());
+    return vec3(std::sqrt(u.x() * u.x())/ num,std::sqrt(u.y() * u.y())/ num,std::sqrt(u.z() * u.z())/ num );
+}
