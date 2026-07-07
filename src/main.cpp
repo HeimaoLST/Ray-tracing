@@ -7,13 +7,13 @@ double hit_circle_sphere(const point3 &center, double radius, const ray &r) {
   auto co = center - r.origin();
   auto direction = r.direction();
   auto a = dot(direction, direction);
-  auto b = -2 * dot(direction, co);
-  auto c = dot(co, co) - radius * radius;
-  auto t = b * b - 4 * a * c;
+  auto h = dot(direction, co);
+  auto c = co.length_square() - radius * radius;
+  auto t = h * h -  a * c;
   if (t < 0) {
     return -1;
   } else {
-    return -b - std::sqrt(t) / 2.0 * a;
+    return (h - std::sqrt(t)) / a;
   }
 }
 color ray_to_color(const ray &r) {
@@ -31,7 +31,7 @@ color ray_to_color(const ray &r) {
 int main() {
   double radio = 16.0 / 9.0;
 
-  int image_width = 400;
+  int image_width = 1080;
   int image_height = image_width / radio;
   image_height = (image_height > 1) ? image_height : 1;
 

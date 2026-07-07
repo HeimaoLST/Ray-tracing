@@ -12,6 +12,9 @@ public:
   double y() const { return e[1]; }
   double z() const { return e[2]; }
 
+  double length_square() {
+      return e[1] * e[1] + e[2] * e[2] + e[3] * e[3];
+  }
   vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
   vec3 &operator+=(const vec3 &u) {
     e[0] += u.e[0];
@@ -36,6 +39,7 @@ public:
   vec3 operator+(const vec3 &u) {
     return vec3(e[0] + u.e[0], e[1] + u.e[1], e[2] + u.e[2]);
   }
+
 };
 using point3 = vec3;
 
